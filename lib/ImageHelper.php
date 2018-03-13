@@ -7,6 +7,7 @@ use Timber\Image\Operation\ToJpg;
 use Timber\Image\Operation\Resize;
 use Timber\Image\Operation\Retina;
 use Timber\Image\Operation\Letterbox;
+use Timber\Image\Operation\Watermark;
 
 use Timber\URLHelper;
 
@@ -139,6 +140,20 @@ class ImageHelper {
 
 		fclose($fh);
 		return $count > 1;
+	}
+
+	 /**
+	 * Generate a new image with the specified watermark.
+	 * Default position will be in the lower right corner.
+	 *
+	 * @param string  $src
+	 * @param string  $watermark_image
+	 * @param bool    $force
+	 * @return string
+	 */
+	public static function watermark( $src, $watermark_image, $force = false ) {
+		$op = new Watermark($watermark_image);
+		return self::_operate($src, $op, $force);
 	}
 
 	/**

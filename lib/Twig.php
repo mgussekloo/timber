@@ -203,6 +203,10 @@ class Twig {
 		$twig->addFilter(new \Twig_SimpleFilter('resize', array('Timber\ImageHelper', 'resize')));
 		$twig->addFilter(new \Twig_SimpleFilter('retina', array('Timber\ImageHelper', 'retina_resize')));
 		$twig->addFilter(new \Twig_SimpleFilter('letterbox', array('Timber\ImageHelper', 'letterbox')));
+		$twig->addFilter(new \Twig_SimpleFilter('watermark', array('Timber\ImageHelper', 'watermark')
+		));
+
+
 		$twig->addFilter(new \Twig_SimpleFilter('tojpg', array('Timber\ImageHelper', 'img_to_jpg')));
 
 		/* debugging filters */
@@ -246,7 +250,7 @@ class Twig {
 					return apply_filters_ref_array($tag, $args);
 				} ));
 
-		
+
 		$twig = apply_filters('timber/twig', $twig);
 		/**
 		 * get_twig is deprecated, use timber/twig
